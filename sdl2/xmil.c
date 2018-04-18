@@ -110,19 +110,22 @@ int xmil_main(int argc, char *argv[]) {
 	char	*p;
 
 	pos = 1;
-	while(pos < argc) {
-		p = argv[pos++];
-		if ((!milstr_cmp(p, "-h")) || (!milstr_cmp(p, "--help"))) {
-			usage(argv[0]);
-			goto np2main_err1;
-		}
-		else {
-			printf("error command: %s\n", p);
-			goto np2main_err1;
-		}
-	}
+	// while(pos < argc) {
+	// 	p = argv[pos++];
+	// 	if ((!milstr_cmp(p, "-h")) || (!milstr_cmp(p, "--help"))) {
+	// 		usage(argv[0]);
+	// 		goto np2main_err1;
+	// 	}
+	// 	else {
+	// 		printf("error command: %s\n", p);
+	// 		goto np2main_err1;
+	// 	}
+	// }
 
 	initload();
+
+	// OPMx2
+	xmilcfg.SOUND_SW = 2;
 
 	TRACEINIT();
 
@@ -158,6 +161,11 @@ int xmil_main(int argc, char *argv[]) {
 		}
 	}
 #endif
+
+	char *path = "init.d88";
+	if (argc > 1) path = argv[1];
+
+	diskdrv_setfdd(0, path, 0);
 
 	while(taskmng_isavail()) {
 		taskmng_rol();

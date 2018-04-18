@@ -6,6 +6,10 @@
         "advtask.h": "c",
         "z80core.h": "c",
         "z80mem.h": "c",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "diskdrv.h": "c",
+        "xmil.h": "c",
+        "fontmng.h": "c",
+        "dosio.h": "c"
     }
 }

@@ -8,8 +8,18 @@ STRIP = strip
 
 SDL2CONF = sdl2-config
 
-OBJS_DIR = objs
+TARGET_DEBUG = xmil_d
 TARGET = xmil
+
+ifdef DEBUG
+OPT_FLAG = -O0 -g
+OBJS_DIR = objs_debug
+BUILD = $(TARGET_DEBUG)
+else
+OPT_FLAG = -O3
+OBJS_DIR = objs
+BUILD = $(TARGET)
+endif
 
 ifeq ($(OS),Windows_NT)
 EXE_PREFIX = .exe
@@ -17,7 +27,7 @@ else
 EXE_PREFIX =
 endif
 
-TARGET_FILE = $(TARGET)$(EXE_PREFIX)
+TARGET_FILE = $(BUILD)$(EXE_PREFIX)
 
 DIR_OBJS = objs
 
@@ -55,7 +65,7 @@ INC_DIR += $(DIR_FDD)
 INC_DIR += $(DIR_EMBED)
 INC_DIR += $(DIR_MENUBASE)
 
-COMMON_FLAGS = -O3 -I. -I$(DIR_ROOT) $(addprefix -I$(DIR_ROOT)/,$(INC_DIR))
+COMMON_FLAGS = $(OPT_FLAG) -I. -I$(DIR_ROOT) $(addprefix -I$(DIR_ROOT)/,$(INC_DIR))
 COMMON_FLAGS += $(shell $(SDL2CONF) --cflags)
 
 CXXFLAGS = $(COMMON_FLAGS) --std=c++11
@@ -134,7 +144,7 @@ OBJS_FILE := $(patsubst %.cpp,%.o,$(OBJS_FILE))
 
 OBJS = $(addprefix $(DIR_OBJS)/,$(OBJS_FILE))
 
-all : $(OBJS_DIR) $(TARGET)
+all : $(OBJS_DIR) $(BUILD)
 
 clean : 
 	rm -rf $(OBJS_DIR)
@@ -147,6 +157,10 @@ $(OBJS_DIR) :
 $(TARGET) : $(OBJS)
 	$(CXX) $(LDFLAGS) -o $@ $^ $(LIBS)
 	$(STRIP) $(TARGET_FILE)
+
+$(TARGET_DEBUG) : $(OBJS)
+	$(CXX) $(LDFLAGS) -o $@ $^ $(LIBS)
+
 
 $(DIR_OBJS)/%.o : $(DIR_ROOT)/%.cpp
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
