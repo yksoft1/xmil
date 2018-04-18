@@ -1,0 +1,178 @@
+----- codelist -----
+dirs:
+../.. 
+../../common 
+../../embed 
+../../embed/menu 
+../../embed/menubase 
+../../fdd 
+../../font 
+../../io 
+../../ext 
+../../sound 
+../ 
+../ext 
+../ext/c86ctl 
+../ext/scci 
+. 
+./misc 
+../../vram 
+../../z80c 
+../../codecnv 
+-- ../.. --
+calendar.c
+debugsub.c
+ievent.c
+keystat.c
+nevent.c
+pccore.c
+statsave.c
+timing.c
+-- ../../common --
+_memory.c
+bmpdata.c
+lstarray.c
+milstr.c
+parts.c
+profile.c
+rect.c
+resize.c
+strres.c
+textfile.c
+wavefile.c
+-- ../../embed --
+vramhdl.c
+vrammix.c
+-- ../../embed/menu --
+dlgabout.c
+dlgcfg.c
+filesel.c
+menustr.c
+-- ../../embed/menubase --
+menubase.c
+menudlg.c
+menuicon.c
+menumbox.c
+menures.c
+menusys.c
+menuvram.c
+-- ../../fdd --
+diskdrv.c
+fdd_2d.c
+fdd_d88.c
+fdd_ini.c
+fdd_mtr.c
+fddfile.c
+newdisk.c
+-- ../../font --
+font.c
+fontdata.c
+fontmake.c
+fontx1.c
+-- ../../io --
+cgrom.c
+cmt.c
+crtc.c
+ctc.c
+dipsw.c
+dmac.c
+fdc.c
+iocore.c
+memio.c
+pcg.c
+ppi.c
+sio.c
+sndboard.c
+subcpu.c
+vramio.c
+-- ../../ext --
+compiler.c
+main.c
+-- ../../sound --
+opm.c
+opmgenc.c
+opmgeng.c
+psg.c
+psggenc.c
+psggeng.c
+sndcsec.c
+sndctrl.c
+sound.c
+x1f.c
+-- ../ --
+dosio.c
+fontmng.c
+ini.c
+joymng.c
+mousemng.c
+scrnmng.c
+sdlkbd.c
+sysmenu.c
+sysmng.c
+taskmng.c
+timemng.c
+trace.c
+xmil.c
+soundmng.cpp
+-- ../ext --
+externalchipmanager.cpp
+externalopl3.cpp
+externalopm.cpp
+externalopna.cpp
+externalpsg.cpp
+opm.cpp
+psg.cpp
+-- ../ext/c86ctl --
+c86ctlc86box.cpp
+c86ctlgimic.cpp
+c86ctlif.cpp
+c86ctlrealchipbase.cpp
+-- ../ext/scci --
+scciif.cpp
+sccisoundchip.cpp
+sccisoundinterface.cpp
+sccisoundinterfacemanager.cpp
+sccispfmlight.cpp
+-- . --
+compiler.c
+main.c
+-- ./misc --
+threadbase.cpp
+tty.cpp
+usbdev.cpp
+-- ../../vram --
+make15.c
+make24.c
+makeatr.c
+makechr.c
+makemix.c
+makescrn.c
+makesub.c
+maketxth.c
+maketxtl.c
+palettes.c
+scrndraw.c
+scrnsave.c
+sdraw.c
+sdrawq16.c
+vram.c
+-- ../../z80c --
+z80c.c
+z80c_cb.c
+z80c_ix.c
+z80c_iy.c
+z80c_mn.c
+z80c_sb.c
+z80dmap.c
+z80mem.c
+-- ../../codecnv --
+eucsjis.c
+eucucs2.c
+sjiseuc.c
+sjisucs2.c
+tcswap16.c
+tcswap32.c
+textcnv.c
+ucs2sjis.c
+ucs2utf8.c
+utf8ucs2.c

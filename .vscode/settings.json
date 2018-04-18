@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "compiler.h": "c",
+        "codecnv.h": "c",
+        "sdlkbd.h": "c",
+        "advtask.h": "c",
+        "z80core.h": "c",
+        "z80mem.h": "c",
+        "stddef.h": "c"
+    }
+}
