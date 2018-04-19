@@ -123,7 +123,7 @@ BOOL scrnmng_create(int width, int height) {
 #endif
 	if (r) {
 		// フルスクリーン
-		SDL_SetWindowFullscreen(s_sdlWindow,SDL_WINDOW_FULLSCREEN_DESKTOP);
+		// SDL_SetWindowFullscreen(s_sdlWindow,SDL_WINDOW_FULLSCREEN_DESKTOP);
 		scrnmng.enable = TRUE;
 		scrnmng.width = width;
 		scrnmng.height = height;

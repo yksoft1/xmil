@@ -25,6 +25,7 @@ ifeq ($(OS),Windows_NT)
 EXE_PREFIX = .exe
 else
 EXE_PREFIX =
+LINUX_BUILD = 1
 endif
 
 TARGET_FILE = $(BUILD)$(EXE_PREFIX)
@@ -50,6 +51,9 @@ DIR_VRAM = vram
 DIR_Z80C = z80c
 DIR_CODECNV = codecnv
 
+DIR_SDL_LINUX = sdl2/mingw/misc/linux
+DIR_SDL_WIN32 = sdl2/mingw/misc/win32
+
 DIRS = $(DIR_COMMON) $(DIR_EMBED) $(DIR_MENU) $(DIR_MENUBASE) $(DIR_FDD)
 DIRS += $(DIR_FONT) $(DIR_IO) $(DIR_EXT) $(DIR_SOUND) $(DIR_SDL2) $(DIR_C86CTL)
 DIRS += $(DIR_SCCI) $(DIR_MINGW) $(DIR_MISC) $(DIR_VRAM) $(DIR_Z80C) $(DIR_CODECNV)
@@ -64,6 +68,16 @@ INC_DIR += $(DIR_FONT)
 INC_DIR += $(DIR_FDD)
 INC_DIR += $(DIR_EMBED)
 INC_DIR += $(DIR_MENUBASE)
+
+ifdef LINUX_BUILD
+DIRS += $(DIR_SDL_LINUX)
+INC_DIR += $(DIR_SDL_LINUX)
+else
+DIRS += $(DIR_SDL_WIN32)
+INC_DIR += $(DIR_SDL_WIN32)
+endif
+
+
 
 COMMON_FLAGS = $(OPT_FLAG) -I. -I$(DIR_ROOT) $(addprefix -I$(DIR_ROOT)/,$(INC_DIR))
 COMMON_FLAGS += $(shell $(SDL2CONF) --cflags)
@@ -103,7 +117,11 @@ SRC_SDL2 += timemng.c trace.c xmil.c soundmng.cpp
 
 SRC_MINGW = compiler.c main.c
 
-SRC_MISC = threadbase.cpp tty.cpp 
+SRC_MISC = 
+SRC_SDL_LINUX = threadbase.cpp
+SRC_SDL_WIN32 = threadbase.cpp
+
+# SRC_MISC += tty.cpp
 # SRC_MISC += usbdev.cpp
 
 SRC_VRAM = make15.c make24.c makeatr.c makechr.c makemix.c 
@@ -116,7 +134,7 @@ SRC_Z80C += z80dmap.c z80mem.c
 SRC_CODECNV = eucsjis.c eucucs2.c sjiseuc.c sjisucs2.c tcswap16.c
 SRC_CODECNV += tcswap32.c textcnv.c ucs2sjis.c ucs2utf8.c utf8ucs2.c
 
-LDLAGS = 
+LDFLAGS = 
 LIBS = $(shell $(SDL2CONF) --libs) -lSDL2_ttf
 
 SRCS  = $(SRC_ROOT)
@@ -137,6 +155,13 @@ SRCS += $(addprefix $(DIR_MISC)/,$(SRC_MISC))
 SRCS += $(addprefix $(DIR_VRAM)/,$(SRC_VRAM))
 SRCS += $(addprefix $(DIR_Z80C)/,$(SRC_Z80C))
 SRCS += $(addprefix $(DIR_CODECNV)/,$(SRC_CODECNV))
+
+ifdef LINUX_BUILD
+SRCS += $(addprefix $(DIR_SDL_LINUX)/,$(SRC_SDL_LINUX))
+LIBS += -lpthread
+else
+SRCS += $(addprefix $(DIR_SDL_WIN32)/,$(SRC_SDL_WIN32))
+endif
 
 
 OBJS_FILE := $(patsubst %.c,%.o,$(SRCS))

@@ -1,7 +1,9 @@
+#ifdef _WIN32
 #include	<windows.h>
+#endif
 #include	<stdio.h>
 #include	<stddef.h>
-#include	<SDL2\SDL.h>
+#include	<SDL2/SDL.h>
 
 #define	BYTESEX_LITTLE
 #define	OSLANG_UTF8
@@ -25,9 +27,44 @@ typedef	unsigned short		UINT16;
 typedef	signed int			SINT32;
 #endif
 
+#ifndef _WIN32
+typedef	char			TCHAR;
+typedef	signed char			BOOL;
+typedef	unsigned char			BYTE;
+typedef	unsigned int		UINT;
+typedef	unsigned int		UINT32;
+#define MAX_PATH 2048
+#define FALSE 0
+#define TRUE 1
+
+#ifndef	max
+#define	max(a,b)	(((a) > (b)) ? (a) : (b))
+#endif
+#ifndef	min
+#define	min(a,b)	(((a) < (b)) ? (a) : (b))
+#endif
+
+#ifndef	ZeroMemory
+#define	ZeroMemory(d,n)		memset((d), 0, (n))
+#endif
+#ifndef	CopyMemory
+#define	CopyMemory(d,s,n)	memcpy((d),(s),(n))
+#endif
+#ifndef	FillMemory
+#define	FillMemory(a, b, c)	memset((a),(c),(b))
+#endif
+
+#ifndef	roundup
+#define	roundup(x, y)	((((x)+((y)-1))/(y))*(y))
+#endif
+
+#else
+
 #ifndef _SSIZE_T_DEFINED
 #define _SSIZE_T_DEFINED
 typedef LONG_PTR ssize_t;
+#endif
+
 #endif
 
 #define	BRESULT				UINT

@@ -33,7 +33,7 @@ const SINT32	*src;
 		sound_pcmunlock(src);
 	}
 	else {
-		ZeroMemory(dst, length);
+		memset(dst,0,length);
 	}
 	SDL_memset(stream, 0, len);
 	SDL_MixAudio(stream, (UINT8 *)dst, length, SDL_MIX_MAXVOLUME);
@@ -69,10 +69,10 @@ UINT soundmng_create(UINT rate, UINT ms) {
 			goto smcre_err2;
 		}
 		soundmng.buf[s] = tmp;
-		ZeroMemory(tmp, samples * 2 * sizeof(SINT16));
+		memset(tmp,0, samples * 2 * sizeof(SINT16));
 	}
 
-	ZeroMemory(&fmt, sizeof(fmt));
+	memset(&fmt,0, sizeof(fmt));
 	fmt.freq = rate;
 	fmt.format = AUDIO_S16SYS;
 	fmt.channels = 2;
