@@ -70,7 +70,7 @@ static const MENUPRM res_cfg[] = {
 			{DLGTYPE_LTEXT,		DID_STATIC,		0,
 				str_buffer,								 16, 105,  40,  11},
 			{DLGTYPE_SLIDER,	DID_BUFFER,		MSS_BOTH | MENU_TABSTOP,
-				(void *)SLIDERPOS(100, 1000),			 60, 104, 140,  13},
+				(void *)SLIDERPOS(20, 1000),			 60, 104, 140,  13},
 			{DLGTYPE_RTEXT,		DID_BUFSTR,		0,
 				NULL,									200, 105,  44,  11},
 			{DLGTYPE_BUTTON,	DID_OK,			MENU_TABSTOP,
@@ -100,7 +100,7 @@ static const MENUPRM res_cfg[] = {
 			{DLGTYPE_LTEXT,		DID_STATIC,		0,
 				str_buffer,								 20, 120,  48,  13},
 			{DLGTYPE_SLIDER,	DID_BUFFER,		MSS_BOTH | MENU_TABSTOP,
-				(void *)SLIDERPOS(100, 1000),			 68, 120, 160,  13},
+				(void *)SLIDERPOS(20, 1000),			 68, 120, 160,  13},
 			{DLGTYPE_RTEXT,		DID_BUFSTR,		0,
 				NULL,									228, 120,  48,  13},
 			{DLGTYPE_FRAME,		DID_STATIC,		0,
@@ -131,8 +131,8 @@ static void setbufstr(void) {
 	OEMCHAR	work[32];
 
 	val = menudlg_getval(DID_BUFFER);
-	if (val < 100) {
-		val = 100;
+	if (val < 20) {
+		val = 20;
 	}
 	else if (val > 1000) {
 		val = 1000;
@@ -228,8 +228,8 @@ static void dlgupdate(void) {
 	}
 
 	val = menudlg_getval(DID_BUFFER);
-	if (val < 100) {
-		val = 100;
+	if (val < 20) {
+		val = 20;
 	}
 	else if (val > 1000) {
 		val = 1000;

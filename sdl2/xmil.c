@@ -23,6 +23,11 @@
 static	UINT		framecnt;
 static	UINT		waitcnt;
 static	UINT		framemax = 1;
+#if defined (EMSCRIPTEN) && defined(USE_EMULARITY_NP2DIR)
+static	char		datadir[256] = EMSCRIPTEN_DIR;
+#else
+static	char		datadir[256] = "./";
+#endif
 
 static void usage(const char *progname) {
 
@@ -122,6 +127,7 @@ int xmil_main(int argc, char *argv[]) {
 	// 	}
 	// }
 
+	file_setcd(datadir);
 	initload();
 
 	// OPMx2
@@ -169,6 +175,9 @@ int xmil_main(int argc, char *argv[]) {
 
 	while(taskmng_isavail()) {
 		taskmng_rol();
+#ifdef EMSCRIPTEN
+ 		emscripten_sleep_with_yield(0);
+#endif
 		if (xmiloscfg.NOWAIT) {
 			pccore_exec(framecnt == 0);
 			if (xmiloscfg.DRAW_SKIP) {			// nowait frame skip

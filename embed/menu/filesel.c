@@ -96,6 +96,9 @@ typedef struct {
 const OEMCHAR	*title;
 const OEMCHAR	*filter;
 const OEMCHAR	*ext;
+#ifdef EMSCRIPTEN
+int drv;
+#endif
 } FSELPRM;
 
 typedef struct {
@@ -105,6 +108,9 @@ typedef struct {
 const OEMCHAR	*filter;
 const OEMCHAR	*ext;
 	OEMCHAR		path[MAX_PATH];
+#ifdef EMSCRIPTEN
+int drv;
+#endif
 } FILESEL;
 
 static	FILESEL		filesel;
@@ -274,6 +280,9 @@ static int dlgcmd(int msg, MENUID id, long param) {
 			switch(id) {
 				case DID_OK:
 					if (dlgupdate()) {
+#ifdef EMSCRIPTEN
+						diskdrv_setfdd(filesel.drv, filesel.path, 0);
+#endif
 						menubase_close();
 					}
 					break;
@@ -314,7 +323,11 @@ static int dlgcmd(int msg, MENUID id, long param) {
 }
 
 static BOOL selectfile(const FSELPRM *prm, OEMCHAR *path, int size, 
+#ifndef EMSCRIPTEN
 														const OEMCHAR *def) {
+#else
+														const OEMCHAR *def,int drv) {
+#endif
 
 const OEMCHAR	*title;
 
@@ -333,9 +346,14 @@ const OEMCHAR	*title;
 		title = prm->title;
 		filesel.filter = prm->filter;
 		filesel.ext = prm->ext;
+#ifdef EMSCRIPTEN
+		filesel.drv = drv;
+#endif
 	}
 	menudlg_create(DLGFS_WIDTH, DLGFS_HEIGHT, title, dlgcmd);
+#ifndef EMSCRIPTEN
 	menubase_modalproc();
+#endif
 	soundmng_play();
 	if (filesel.result) {
 		file_cpyname(path, filesel.path, size);
@@ -360,7 +378,11 @@ void filesel_fdd(REG8 drv) {
 	OEMCHAR	path[MAX_PATH];
 
 	if (drv < 4) {
+#ifdef EMSCRIPTEN
+		if (selectfile(&fddprm, path, NELEMENTS(path), fddfile_diskname(drv),drv)) {
+#else
 		if (selectfile(&fddprm, path, NELEMENTS(path), fddfile_diskname(drv))) {
+#endif
 			diskdrv_setfdd(drv, path, 0);
 		}
 	}
