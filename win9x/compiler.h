@@ -24,7 +24,7 @@
 #endif
 #define	OSLINEBREAK_CRLF
 
-#ifndef __GNUC__
+#if !defined(__GNUC__) || defined(__MINGW32__)
 typedef signed int			SINT;
 typedef signed char			SINT8;
 typedef unsigned char		UINT8;

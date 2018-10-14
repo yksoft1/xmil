@@ -24,7 +24,7 @@ public:
 	 * モーダル ダイアログ ボックスを終了する
 	 * @param[in] nResult DoModalの呼び出し元に返す値
 	 */
-	void CDlgProc::EndDialog(int nResult)
+	void EndDialog(int nResult)
 	{
 		::EndDialog(m_hWnd, nResult);
 	}

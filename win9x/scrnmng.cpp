@@ -22,6 +22,13 @@
 #include "palettes.h"
 #include "makescrn.h"
 
+#ifndef	max
+#define	max(a,b)	(((a) > (b)) ? (a) : (b))
+#endif
+#ifndef	min
+#define	min(a,b)	(((a) < (b)) ? (a) : (b))
+#endif
+
 #if defined(SUPPORT_DCLOCK)
 #include "subwnd/dclock.h"
 #endif	// defined(SUPPORT_DCLOCK)

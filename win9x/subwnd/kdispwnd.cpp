@@ -12,6 +12,13 @@
 #include "xmil.h"
 #include "generic/keydisp.h"
 
+#ifndef	max
+#define	max(a,b)	(((a) > (b)) ? (a) : (b))
+#endif
+#ifndef	min
+#define	min(a,b)	(((a) < (b)) ? (a) : (b))
+#endif
+
 #if defined(SUPPORT_KEYDISP)
 
 //! 唯一のインスタンスです

@@ -11,6 +11,13 @@
 #include "sysmng.h"
 #include "generic/softkbd.h"
 
+#ifndef	max
+#define	max(a,b)	(((a) > (b)) ? (a) : (b))
+#endif
+#ifndef	min
+#define	min(a,b)	(((a) < (b)) ? (a) : (b))
+#endif
+
 #if defined(SUPPORT_SOFTKBD)
 
 //! 唯一のインスタンスです
