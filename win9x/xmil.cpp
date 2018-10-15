@@ -502,6 +502,14 @@ static void xmilcmd(HWND hWnd, UINT cmd) {
 			break;
 #endif	// defined(SUPPORT_X1F)
 
+#if defined(SUPPORT_WAVEREC)
+		case IDM_WAVEREC:
+			winuienter();
+			dialog_wav(hWnd);
+			winuileave();
+			break;
+#endif	// defined(SUPPORT_WAVEREC)
+
 		case IDM_ALTENTER:
 			xmiloscfg.shortcut ^= 1;
 			update |= SYS_UPDATECFG;

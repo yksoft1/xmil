@@ -8,3 +8,7 @@
 #if defined(SUPPORT_X1F)
 void dialog_x1f(HWND hWnd);
 #endif	// defined(SUPPORT_X1F)
+
+#if defined(SUPPORT_WAVEREC)
+void dialog_wav(HWND hWnd);
+#endif	// defined(SUPPORT_X1F)

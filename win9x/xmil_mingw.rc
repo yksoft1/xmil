@@ -409,6 +409,9 @@ BEGIN
     IDS_X1FTITLE            "Save as OPM log"
     IDS_X1FEXT              "x1f"
     IDS_X1FFILTER           "OPM log (*.x1f)|*.x1f|"
+    IDS_WAVTITLE            "Record WAVE"
+    IDS_WAVEXT              "wav"
+    IDS_WAVFILTER           "Wave file (*.wav)|*.wav|"
 END
 
 STRINGTABLE DISCARDABLE 

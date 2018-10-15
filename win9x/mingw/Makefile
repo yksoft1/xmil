@@ -42,6 +42,7 @@ CPPSRCS	=	$(wildcard $(XMIL_PATH)/*.c) \
 			$(XMIL_PATH)/common/profile.c \
 			$(XMIL_PATH)/common/strres.c \
 			$(XMIL_PATH)/common/textfile.c \
+			$(XMIL_PATH)/common/wavefile.c \
 			$(XMIL_PATH)/generic/cmndraw.c \
 			$(XMIL_PATH)/generic/keydisp.c \
 			$(XMIL_PATH)/generic/softkbd.c \

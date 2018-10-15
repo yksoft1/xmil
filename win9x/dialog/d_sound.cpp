@@ -15,6 +15,7 @@
 #include "x1f.h"
 
 static const TCHAR x1fui_file[] = TEXT("xmil%04d.x1f");
+static const TCHAR wavui_file[] = TEXT("xmil%04d.wav");
 
 /**
  * X1F ファイル選択
@@ -49,6 +50,50 @@ void dialog_x1f(HWND hWnd)
 	{
 		LPCTSTR lpPath = dlg.GetPathName();
 		if (x1f_open(lpPath) == SUCCESS)
+		{
+			file_cpyname(bmpfilefolder, lpPath, _countof(bmpfilefolder));
+			sysmng_update(SYS_UPDATEOSCFG);
+		}
+	}
+}
+
+#endif
+
+#ifdef SUPPORT_WAVEREC
+#include "sound.h"
+/**
+ * WAV ファイル選択
+ * @param[in] hWnd 親ウィンドウ
+ */
+void dialog_wav(HWND hWnd)
+{
+	sound_recstop();
+
+	TCHAR szPath[MAX_PATH];
+	for (UINT i = 0; i < 10000; i++)
+	{
+		TCHAR szFilename[MAX_PATH];
+		wsprintf(szFilename, wavui_file, i);
+
+		file_cpyname(szPath, fddfolder, _countof(szPath));
+		file_cutname(szPath);
+		file_catname(szPath, szFilename, _countof(szPath));
+		if (file_attr(szPath) == -1)
+		{
+			break;
+		}
+	}
+
+	std::tstring rTitle(LoadTString(IDS_WAVTITLE));
+	std::tstring rFilter(LoadTString(IDS_WAVFILTER));
+	std::tstring rExt(LoadTString(IDS_WAVEXT));
+
+	CFileDlg dlg(FALSE, rExt.c_str(), szPath, OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY, rFilter.c_str(), hWnd);
+	dlg.m_ofn.nFilterIndex = 1;
+	if (dlg.DoModal() == IDOK)
+	{
+		LPCTSTR lpPath = dlg.GetPathName();
+		if (sound_recstart(lpPath) == SUCCESS)
 		{
 			file_cpyname(bmpfilefolder, lpPath, _countof(bmpfilefolder));
 			sysmng_update(SYS_UPDATEOSCFG);

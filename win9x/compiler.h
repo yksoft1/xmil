@@ -123,6 +123,9 @@ typedef signed __int64		SINT64;
 #define SUPPORT_OPMx2
 #define	SUPPORT_BANKMEM
 #define	SUPPORT_X1F
+#ifdef __MINGW32__
+#define	SUPPORT_WAVEREC
+#endif
 #define	SUPPORT_DCLOCK
 #define	SUPPORT_RESUME
 #define	SUPPORT_STATSAVE	10

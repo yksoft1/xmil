@@ -52,6 +52,9 @@
 #define IDS_X1FTITLE                    31031
 #define IDS_X1FEXT                      31032
 #define IDS_X1FFILTER                   31033
+#define IDS_WAVTITLE                    31034
+#define IDS_WAVEXT                      31035
+#define IDS_WAVFILTER                   31036
 #define IDS_SCREENOPTION                31051
 #define IDS_ZOOM_NONE                   31052
 #define IDS_ZOOM_FIXEDASPECT            31053
