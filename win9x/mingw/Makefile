@@ -9,7 +9,7 @@ RM		=	rm -f
 
 XMIL_PATH	= ../..
 
-CFLAGS	=	 -O3 -Wstrict-overflow=0 -Wstrict-aliasing=0 -Wno-narrowing -DNDEBUG -I. -I.. \
+CFLAGS	=	-O3 -Wstrict-overflow=0 -Wstrict-aliasing=0 -Wno-narrowing -DNDEBUG -I. -I.. \
 			-I$(XMIL_PATH) \
 			-I$(XMIL_PATH)/codecnv \
 			-I$(XMIL_PATH)/common \
@@ -27,6 +27,7 @@ CFLAGS	=	 -O3 -Wstrict-overflow=0 -Wstrict-aliasing=0 -Wno-narrowing -DNDEBUG -I
 			-I$(XMIL_PATH)/win9x/ext/romeo \
 			-I$(XMIL_PATH)/win9x/ext/scci 
 
+CXXFLAGS = -std=gnu++0x $(CFLAGS)
 
 #CFLAGS	+=	$(shell sdl2-config --cflags)
 LFLAGS	= -static -mwindows
@@ -84,7 +85,7 @@ $(TARGET):	$(OBJS) $(XMIL_PATH)/win9x/xmil_mingw.o
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 .cpp.o:
-	$(CXX) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 $(XMIL_PATH)/win9x/xmil_mingw.o: $(XMIL_PATH)/win9x/xmil_mingw.rc
 	$(WINDRES) -i $< -o $@

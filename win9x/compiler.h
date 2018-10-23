@@ -7,7 +7,16 @@
 
 #define	_WIN32_IE	0x0200
 
+#ifndef WINVER                // Specifies that the minimum required platform is Windows 95.
+#define WINVER 0x0400         // Change this to the appropriate value to target other versions of Windows.
+#endif	
+
+#ifndef _WIN32_WINNT          // Specifies that the minimum required platform is Windows NT4.0 SP3.
+#define _WIN32_WINNT 0x0400   // Change this to the appropriate value to target other versions of Windows.
+#endif
+
 #include <windows.h>
+#include <prsht.h>
 #include <tchar.h>
 #include <stdio.h>
 #include <stddef.h>
