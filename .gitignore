@@ -13,6 +13,10 @@
 *.x1
 *.x1t
 xmil.cfg
+xmil.ini
 *.2d
 *.d88
 *.tap
+FNT0816.*
+FNT1616.*
+IPLROM.*

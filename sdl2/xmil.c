@@ -130,8 +130,10 @@ int xmil_main(int argc, char *argv[]) {
 	file_setcd(datadir);
 	initload();
 
+#ifdef SUPPORT_OPMx2
 	// OPMx2
 	xmilcfg.SOUND_SW = 2;
+#endif
 
 	TRACEINIT();
 
