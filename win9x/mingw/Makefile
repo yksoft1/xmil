@@ -9,7 +9,7 @@ RM		=	rm -f
 
 XMIL_PATH	= ../..
 
-CFLAGS	=	-O3 -Wstrict-overflow=0 -Wstrict-aliasing=0 -Wno-narrowing -DNDEBUG -I. -I.. \
+CFLAGS	=	-O2 -Wstrict-overflow=0 -Wstrict-aliasing=0 -Wno-narrowing -DNDEBUG -I. -I.. \
 			-I$(XMIL_PATH) \
 			-I$(XMIL_PATH)/codecnv \
 			-I$(XMIL_PATH)/common \
