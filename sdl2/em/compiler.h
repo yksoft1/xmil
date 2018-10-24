@@ -106,7 +106,7 @@ typedef LONG_PTR ssize_t;
 #define	SOUNDRESERVE	100
 
 #define	SUPPORT_OPM
-#define SUPPORT_OPMx2
+//#define SUPPORT_OPMx2
 //#define SUPPORT_EXTERNALCHIP
 
 #define	SCREEN_BPP		16
